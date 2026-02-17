@@ -49,13 +49,17 @@ MRIO adjusts accelerometer bias by estimating and differentiating forward veloci
  It's the responsibility of the user to define a `model` class which needs to implement the following four methods:
 
  #### systemDynamics(self, x, u, dt)
- Implements the (generally nonlinear) state transition function $\hat{\mathbf{x}}_k = f(\hat{\mathbf{x}}_{k-1}, \mathbf{u}_{k-1})$.
+ Implements the (generally nonlinear) state transition function
+ 
+ $$\hat{\mathbf{x}}_k = f(\hat{\mathbf{x}}_{k-1}, \mathbf{u}_{k-1})$$
 
  #### getStateTransitionMatrix(self, x, u, dt)
  Returns the jacobian, $\mathbf{F}$, of $f$ with respect to $\mathbf{x}$.
 
  #### observationFunction(self, x)
- Implements the (generally nonlinear) observation function $\hat{\mathbf{y}}_k = h(\hat{\mathbf{x}}_{k})$.
+ Implements the (generally nonlinear) observation function
+ 
+ $$\hat{\mathbf{y}}_k = h(\hat{\mathbf{x}}_{k})$$
 
  #### getObservationMatrix(self, x)
   Returns the jacobian, $\mathbf{H}$, of $h$ with respect to $\mathbf{x}$.
