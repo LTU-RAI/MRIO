@@ -1,0 +1,64 @@
+/**:
+  ros__parameters:
+    use_sim_time: false
+    radarSetupFile: "radar_setup_6radars.yaml"
+    baseLinkFrame: "base_link"
+
+    imuTopic: "/vectornav/imu"
+    imuFrame: "vectornav"    
+    odometryFrame: "odom"
+
+    # Output topics
+    mergedPCLTopic: "rio/merged_pcl"
+    egoVelocityTopic: "rio/ego_velocity"
+    egoVelocityWithCovTopic: "rio/ego_velocity_with_cov"
+    outputPoseTopic: "rio/odometry/pose"
+    outputTwistTopic: "rio/odometry/twist"
+    mapTopic: "rio/mapping/map"
+
+    # Initial geometric filtering parameters
+    useIndividualRadii: true
+    # Global filtering radii if useIndividualRadii is set to false, otherwiwse ignored
+    globalInnerRadius: 1.0
+    globalOuterRadius: .inf
+    # Filter based on vertical distance: z value in meters from the base link, or .-inf to disable
+    discardPointsBelowZValue: -.inf
+
+    # RANSAC parameters
+    useRANSAC: false
+    ransacedPCLTopic: "rio/ransaced_pcl"
+    ransacUseRelativeTolerance: true
+    # The criterion for being classified as an inlier by RANSAC is that the absolute difference
+    # between the measured doppler velocity y and the one estimated by the ego velocity model ŷ
+    # is below the tolerance, where
+    # tolerance = ransacAbsoluteTolerance + ransacRelativeTolerance * ŷ
+    ransacAbsoluteTolerance: 0.005
+    ransacRelativeTolerance: 0.05
+    ransacMaxTrials: 100
+    ransacStopProbability: 0.99
+
+    # EKF parameters
+    # Should the covariance update in the update step use the simple equation P <- (I - KH)P
+    # or the more stable "Joseph form", P <- (I - KH)P(I - KH)^T + KRK^T ?
+    useJosephForm: true    
+    # If useEgoVelCovarianceFromMessage is true, the estimated egovelocity covariance from lsq/RANSAC is used
+    # and multiplied by egoVelCovarianceMultiplier. Otherwise the EKF uses a fixed covariance given by egoVelCovariance
+    useEgoVelCovarianceFromMessage: false
+
+    # Stage 1
+    stage1_outputTopic: "rio/stage1/acc_x"
+    stage1_stateWithCovarianceTopic: "rio/stage1/state_with_cov"
+    stage1_processNoiseCovariance: 1e-2 # v_x is the only state in stage 1
+    stage1_egoVelCovariance: 1e-5 # Not used if useEgoVelCovarianceFromMessage is set to true
+    stage1_egoVelCovarianceMultiplier: 1.0
+    stage1_minimumEgoVelCovariance: 1e-7 # To avoid singular matrices
+    stage1_movingAverageSize: 5
+
+    # Stage 2
+    stage2_stateWithCovarianceTopic: "rio/stage2/state_with_cov"
+    stage2_processNoiseCovariance: [1e-6, 1e-6, 1e-4, 1e-6] # p_x, p_y, v_x, yaw
+    stage2_initialStateCovariance: [0.0, 0.0, 0.1, 0.0]
+    stage2_egoVelCovariance: 1e-5 # Not used if useEgoVelCovarianceFromMessage is set to true
+    stage2_egoVelCovarianceMultiplier: 1.0
+    stage2_minimumEgoVelCovariance: 1e-7 # To avoid singular matrices
+    stage2_yawAngleCovariance: 1e-4

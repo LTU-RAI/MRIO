@@ -1,0 +1,23 @@
+<% params_file = @args.first || "default.yaml" %>
+<% cwd = Dir.pwd %>
+
+name: mrio_launch
+root: <%= cwd %>/../mrio
+
+windows:
+  - rio:
+      layout: tiled 
+      panes:
+        - filter_and_merge_pcl:
+          - source ../../install/local_setup.bash
+          - python3 filter_and_merge_pcl.py --ros-args --params-file ../config/<%= params_file %>
+        - doppler_to_egovel:
+          - python3 estimate_ego_velocity_from_doppler.py --ros-args --params-file ../config/<%= params_file %> --log-level DEBUG --log-level rcl:=INFO
+        - ekf_stage1:
+          - source ../../install/local_setup.bash
+          - python3 ekf_stage1.py --ros-args --params-file ../config/<%= params_file %> --log-level DEBUG --log-level rcl:=INFO
+        - ekf_stage2:
+          - source ../../install/local_setup.bash
+          - python3 ekf_stage2.py --ros-args --params-file ../config/<%= params_file %> --log-level DEBUG --log-level rcl:=INFO
+        - mapping:
+          - python3 mapping.py --ros-args --params-file ../config/<%= params_file %> --log-level DEBUG --log-level rcl:=INFO

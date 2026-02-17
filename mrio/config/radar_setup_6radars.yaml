@@ -1,0 +1,33 @@
+radars:
+  - topic: "/ti_mmwave_0/radar_scan_pcl"
+    frame: "ti_mmwave_0"
+    innerRadius: 1.5
+    outerRadius: 5.0
+    dopplerVelocityFieldName: "velocity"
+  - topic: "/ti_mmwave_1/radar_scan_pcl"
+    frame: "ti_mmwave_1"
+    innerRadius: 1.0
+    outerRadius: 5.0    
+    dopplerVelocityFieldName: "velocity"
+  - topic: "/ti_mmwave_2/radar_scan_pcl"
+    frame: "ti_mmwave_2"
+    innerRadius: 1.0
+    outerRadius: 4.0    
+    dopplerVelocityFieldName: "velocity"
+  - topic: "/ti_mmwave_3/radar_scan_pcl"
+    frame: "ti_mmwave_3"
+    innerRadius: 1.5
+    outerRadius: 5.0    
+    dopplerVelocityFieldName: "velocity"
+  - topic: "/ti_mmwave_4/radar_scan_pcl"
+    frame: "ti_mmwave_4"
+    innerRadius: 1.5
+    outerRadius: 5.0    
+    dopplerVelocityFieldName: "velocity"
+  - topic: "/ti_mmwave_5/radar_scan_pcl"
+    frame: "ti_mmwave_5"
+    innerRadius: 1.0
+    outerRadius: 4.0  
+    dopplerVelocityFieldName: "velocity"
+
+radarPublishPeriod: 0.1 # For a single radar setup, data will be published as soon as it is received, in that case this parameter is irrelevant
