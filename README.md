@@ -51,7 +51,7 @@ MRIO adjusts accelerometer bias by estimating and differentiating forward veloci
  #### systemDynamics(self, x, u, dt)
  Implements the (generally nonlinear) state transition function
  
- $$\hat{\mathbf{x}}_k = f(\hat{\mathbf{x}}_{k-1}, \mathbf{u}_{k-1})$$
+ $$\hat{\mathbf{x}}_k = f\left(\hat{\mathbf{x}}_{k-1}, \mathbf{u}_{k-1}\right)$$
 
  #### getStateTransitionMatrix(self, x, u, dt)
  Returns the jacobian, $\mathbf{F}$, of $f$ with respect to $\mathbf{x}$.
@@ -59,7 +59,7 @@ MRIO adjusts accelerometer bias by estimating and differentiating forward veloci
  #### observationFunction(self, x)
  Implements the (generally nonlinear) observation function
  
- $$\hat{\mathbf{y}}_k = h(\hat{\mathbf{x}}_{k})$$
+ $$\hat{\mathbf{y}}_k = h\left(\hat{\mathbf{x}}_{k}\right)$$
 
  #### getObservationMatrix(self, x)
   Returns the jacobian, $\mathbf{H}$, of $h$ with respect to $\mathbf{x}$.
