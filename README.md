@@ -11,7 +11,7 @@ sudo apt install ros-${ROS_DISTRO}-tf-transformations
 
 ![RIO block diagram](rio_block_diagram.png)
 
-## 2-stage EKF
+## 2-Stage Multi Radar Inertial Odometry
 
 MRIO adjusts accelerometer bias by estimating and differentiating forward velocity in a first-stage EKF. The corrected acceleration generated from stage-I, differentiation and moving average filtering, is injected into a second-stage EKF, which estimates the pose for the ground mobile robot and the forward velocity of the agent. 
 
