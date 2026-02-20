@@ -29,7 +29,7 @@ The configuration files are found in the `config` folder. It's split into two di
 
  ## Description of the nodes
 
- Note: Since the topic names can be chosen freely in the parameter file, when a topic is mentioned by name in the upcoming sections, it will refer the name of the field in the parameter file, rather than the actual name of the ros2 topic.
+ Note: Since the topic names can be chosen freely in the parameter file, when a topic is mentioned by name in the upcoming sections, it will refer to the name of the field in the parameter file, rather than the actual name of the ROS 2 topic.
 
  ### filter_and_merge_pcl.py
 
@@ -37,9 +37,9 @@ The configuration files are found in the `config` folder. It's split into two di
 
  ### estimate_ego_velocity_from_doppler.py
 
-This node subscribes to the merged pointcloud topic and uses it to estimate the velocity vector of the robot by performing a linear regression (least squares) using the unit vector to each radar detection and its corresponding doppler velocity. Optionally (if the parameter `useRANSAC` is set to `true`), the least squares estimation can be extended with RANSAC, to reject points that don't agree with the consensus model. This should be particularly helpful in removing points from moving objects, since they will have doppler velocities that don't align with the movement of the robot, but some static outliers should also be rejected.
- 
- The node publishes the estimated ego velocity vector as a `TwistWithCovarianceStamped` message (on the topic defined by `egoVelocityWithCovTopic`). The covariance matrix is estimated using the formula described [here](https://stats.stackexchange.com/questions/109846/the-variance-covariance-matrix-of-the-least-squares-parameter-estimation) (taken from [The Elements of Statistical Learning](https://hastie.su.domains/ElemStatLearn/)). If RANSAC is activated, it also publishes the outlier filtered pointcloud.
+This node subscribes to the merged point cloud topic, where the point clouds from individual radars are first filtered based on a predefined sensing radius. The filtered data are then used to estimate ego velocity through a least-squares approach. Within this sensing range, both inner and outer radius thresholds are applied: the inner radius removes points caused by vehicle vibrations during motion, while the outer radius filters out points resulting from false reflections. In this work, we have used TIIWR6843AOP EVM radars, for which RANSAC didn't provide significant benefits.
+
+The node publishes the estimated ego velocity vector as a `TwistWithCovarianceStamped` message (on the topic defined by `egoVelocityWithCovTopic`). The covariance matrix is estimated using the formula described [here](https://stats.stackexchange.com/questions/109846/the-variance-covariance-matrix-of-the-least-squares-parameter-estimation) (taken from [The Elements of Statistical Learning](https://hastie.su.domains/ElemStatLearn/)). If RANSAC is activated, it also publishes the outlier filtered pointcloud.
 
  ### ekf.py
 
