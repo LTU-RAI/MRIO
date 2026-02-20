@@ -1,5 +1,5 @@
 # MRIO
-This is a realtime ROS2 implementation of the MRIO (Multi-Radar Inertial Odometry) originally developed by Moumita Mukherjee.
+This is a real-time ROS2 implementation of the MRIO (Multi-Radar Inertial Odometry) originally developed by Moumita Mukherjee.
 
 ## Dependencies
 
@@ -13,11 +13,11 @@ sudo apt install ros-${ROS_DISTRO}-tf-transformations
 
 ## 2-stage EKF
 
-MRIO adjusts accelerometer bias by estimating and differentiating forward velocity in a first stage EKF, the output of which is injected to a second stage EKF, which estimates the 2D pose and forward velocity of the agent. 
+MRIO adjusts accelerometer bias by estimating and differentiating forward velocity in a first-stage EKF. The corrected acceleration generated from stage-I, differentiation and moving average filtering, is injected into a second-stage EKF, which estimates the pose for the ground mobile robot and the forward velocity of the agent. 
 
  ## Configuration
 
- The configuration files are found in the `config` folder. It's split into two different yaml files: One containing general parameters (for example `default.yaml`), and one containing a specific radar setup (for example `radar_setup_6radars.yaml`). The name of the radar setup file to be used is specified in the general parameter configuration file under the field `radarSetupFile`. It's structured like this to make it easy to try out various radar setups without needing several configuration files for the general parameters.
+The configuration files are found in the `config` folder. It's split into two different yaml files: One containing general parameters (for example `default.yaml`), and one containing a specific radar setup (for example `radar_setup_6radars.yaml`). The name of the radar setup file to be used is specified in the general parameter configuration file under the field `radarSetupFile`. It's structured like this to make it easy to try out various radar setups without needing several configuration files for the general parameters.
 
  ## Sensor requirements
 
