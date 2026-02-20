@@ -11,13 +11,12 @@ sudo apt install ros-${ROS_DISTRO}-tf-transformations
 
 ![RIO block diagram](rio_block_diagram.png)
 
-## 2-Stage Multi Radar Inertial Odometry
+## 2-Stage Multi-Radar Inertial Odometry(MRIO)
 
-MRIO adjusts accelerometer bias by estimating and differentiating forward velocity in a first-stage EKF. The corrected acceleration generated from stage-I, differentiation and moving average filtering, is injected into a second-stage EKF, which estimates the pose for the ground mobile robot and the forward velocity of the agent. 
+MRIO adjusts accelerometer bias by estimating and differentiating forward velocity in a first-stage EKF. The corrected ego-velocity generated from stage-I, after differentiation and moving average filtering, is injected into a second-stage EKF, which estimates the pose for the ground mobile robot and the forward velocity of the agent.  
 
  ## Configuration
-
-The configuration files are found in the `config` folder. It's split into two different yaml files: One containing general parameters (for example `default.yaml`), and one containing a specific radar setup (for example `radar_setup_6radars.yaml`). The name of the radar setup file to be used is specified in the general parameter configuration file under the field `radarSetupFile`. It's structured like this to make it easy to try out various radar setups without needing several configuration files for the general parameters.
+The configuration files are found in the `config` folder. It's split into two different yaml files: One containing general parameters (for example, `default.yaml`), and one containing a specific radar setup (for example, `radar_setup_6radars.yaml`). The name of the radar setup file to be used is specified in the general parameter configuration file under the field `radarSetupFile`. It's structured like this to make it easy to try out various radar setups without needing several configuration files for the general parameters.
 
  ## Sensor requirements
 
@@ -38,7 +37,7 @@ The configuration files are found in the `config` folder. It's split into two di
 
  ### estimate_ego_velocity_from_doppler.py
 
- This node subscribes to the merged pointcloud topic and uses it to estimate the velocity vector of the robot by performing a linear regression (least squares) using the unit vector to each radar detection and its corresponding doppler velocity. Optionally (if the parameter `useRANSAC` is set to `true`), the least squares estimation can be extended with RANSAC, to reject points that don't agree with the consensus model. This should be particularly helpful in removing points from moving objects, since they will have doppler velocities that don't align with the movement of the robot, but some static outliers should also be rejected.
+This node subscribes to the merged pointcloud topic and uses it to estimate the velocity vector of the robot by performing a linear regression (least squares) using the unit vector to each radar detection and its corresponding doppler velocity. Optionally (if the parameter `useRANSAC` is set to `true`), the least squares estimation can be extended with RANSAC, to reject points that don't agree with the consensus model. This should be particularly helpful in removing points from moving objects, since they will have doppler velocities that don't align with the movement of the robot, but some static outliers should also be rejected.
  
  The node publishes the estimated ego velocity vector as a `TwistWithCovarianceStamped` message (on the topic defined by `egoVelocityWithCovTopic`). The covariance matrix is estimated using the formula described [here](https://stats.stackexchange.com/questions/109846/the-variance-covariance-matrix-of-the-least-squares-parameter-estimation) (taken from [The Elements of Statistical Learning](https://hastie.su.domains/ElemStatLearn/)). If RANSAC is activated, it also publishes the outlier filtered pointcloud.
 
