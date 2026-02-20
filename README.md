@@ -69,7 +69,7 @@ The EKF class has the following two methods,
 
 #### update(self, y, R)
 
-, which perform the predict and update steps with the help of the user defined `model` class, and where `Q` and `R` are the process noise covariance and the measurement noise covariance respectively.
+Which perform the predict and update steps with the help of the user-defined `model` class, and where `Q` and `R` are the process noise covariance and the measurement noise covariance, respectively.
 
 Even in the case that there's a single state, input or output, it's important for the functionality that `x`, `u` and `y` are provided as 1-dimensional numpy arrays, and that the jacobians and covariance matrices are provided as 2-dimensional numpy arrays (e.g., even if there is only a single state, `x` should be an array of shape (1,) and `getStateTransitionMatrix` should return an array of shape (1,1), they can _not_ just be floating point scalars).
 
@@ -87,7 +87,7 @@ This node subscribes to the `egoVelocityWithCovTopic`, the `imuTopic` and the `s
 
 ### mapping.py
 
-This node subscribes to the radar pointcloud from the `mergedPCLTopic` (if `useRANSAC` if `false`) or the `ransacedPCLTopic` (if `useRANSAC` if `true`). The input pointcloud is transformed from the `baseLinkFrame` to the `odometryFrame` using the TF published by __ekf_stage2.py__, and appended to a pointcloud map, which is published once every 30 input messages under `mapTopic` (Note: The frequency of publishing the map should be left to the user to decide in the parameter file, but is currently hardcoded in __mapping.py__).
+This node subscribes to the radar pointcloud from the `mergedPCLTopic` (if `useRANSAC` is `false`) or the `ransacedPCLTopic` (if `useRANSAC` is `true`). The input pointcloud is transformed from the `baseLinkFrame` to the `odometryFrame` using the TF published by __ekf_stage2.py__, and appended to a pointcloud map, which is published once every 30 input messages under `mapTopic` (Note: The frequency of publishing the map should be left to the user to decide in the parameter file, but is currently hardcoded in __mapping.py__).
 
 ## Launching MRIO
 
