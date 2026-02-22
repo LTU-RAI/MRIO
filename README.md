@@ -41,7 +41,7 @@ This node subscribes to the merged point cloud topic, where the point clouds fro
 
 The node publishes the estimated ego velocity vector as a `TwistWithCovarianceStamped` message (on the topic defined by `egoVelocityWithCovTopic`). 
 
-<!--The covariance matrix is estimated using the formula described [here](https://stats.stackexchange.com/questions/109846/the-variance-covariance-matrix-of-the-least-squares-parameter-estimation) (taken from [The %Elements of Statistical Learning](https://hastie.su.domains/ElemStatLearn/)). If RANSAC is activated, it also publishes the outlier filtered pointcloud.-->
+<--The covariance matrix is estimated using the formula described [here](https://stats.stackexchange.com/questions/109846/the-variance-covariance-matrix-of-the-least-squares-parameter-estimation) (taken from [The Elements of Statistical Learning](https://hastie.su.domains/ElemStatLearn/)). If RANSAC is activated, it also publishes the outlier filtered pointcloud.-->
 
  ### ekf.py
 
