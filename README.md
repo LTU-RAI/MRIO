@@ -39,7 +39,9 @@ The configuration files are found in the `config` folder. It's split into two di
 
 This node subscribes to the merged point cloud topic, where the point clouds from individual radars are first filtered based on a predefined sensing radius. The filtered data are then used to estimate ego velocity through a least-squares approach. Within this sensing range, both inner and outer radius thresholds are applied: the inner radius removes points caused by vehicle vibrations during motion, while the outer radius filters out points resulting from false reflections. In this work, we have used TIIWR6843AOP EVM radars, for which RANSAC didn't provide significant benefits.
 
-The node publishes the estimated ego velocity vector as a `TwistWithCovarianceStamped` message (on the topic defined by `egoVelocityWithCovTopic`). The covariance matrix is estimated using the formula described [here](https://stats.stackexchange.com/questions/109846/the-variance-covariance-matrix-of-the-least-squares-parameter-estimation) (taken from [The Elements of Statistical Learning](https://hastie.su.domains/ElemStatLearn/)). If RANSAC is activated, it also publishes the outlier filtered pointcloud.
+The node publishes the estimated ego velocity vector as a `TwistWithCovarianceStamped` message (on the topic defined by `egoVelocityWithCovTopic`). 
+
+<!--The covariance matrix is estimated using the formula described [here](https://stats.stackexchange.com/questions/109846/the-variance-covariance-matrix-of-the-least-squares-parameter-estimation) (taken from [The %Elements of Statistical Learning](https://hastie.su.domains/ElemStatLearn/)). If RANSAC is activated, it also publishes the outlier filtered pointcloud.-->
 
  ### ekf.py
 
