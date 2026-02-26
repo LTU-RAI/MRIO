@@ -35,13 +35,8 @@ This node subscribes to the radar PointCloud2 topics defined in the `radarSetupF
 This node subscribes to the merged point cloud topic, where the point clouds from individual radars are first filtered based on a predefined sensing radius. The filtered data are then used to estimate ego velocity through a least-squares approach. Within this sensing range, both inner and outer radius thresholds are applied: the inner radius removes points caused by vehicle vibrations during motion, while the outer radius filters out points resulting from false reflections. In this work, we have used TIIWR6843AOP EVM radars, for which RANSAC didn't provide significant benefits.The node publishes the estimated ego velocity vector as a `TwistWithCovarianceStamped` message (on the topic defined by `egoVelocityWithCovTopic`). 
 
  ## ekf.py
-
-A simple implementation of a general Extended Kalman Filter (EKF).
-
-The user must define a `model` class that implements the following four methods:
-
+ A general Extended Kalman Filter (EKF). The user must define a `model` class that implements the following four methods:
 ### State model
-
 #### `systemDynamics(self, x, u, dt)`
 Implements the (generally nonlinear) state transition function:
 $$
@@ -62,10 +57,8 @@ Returns the Jacobian \( H \) of \( h \) with respect to \( x \).
 
 ---
 ### EKF methods
-
 #### `predict(self, u, Q, dt)`
 Performs the prediction step of the EKF.
-
 #### `update(self, y, R)`
 Performs the measurement update step.
 
