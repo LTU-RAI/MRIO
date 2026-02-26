@@ -51,6 +51,7 @@ $$
 $$
 #### `getStateTransitionMatrix(self, x, u, dt)`
 Returns the Jacobian \( F \) of \( f \) with respect to \( x \).
+
 ---
 #### `observationFunction(self, x)`
 Implements the (generally nonlinear) observation function:
