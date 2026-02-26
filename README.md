@@ -99,15 +99,8 @@ tmuxinator start -p mrio_launch.yml my_custom_config.yaml
 
 ------------------------------------------------
 This work is licensed under the terms of the MIT license
-<br>
-<p align='center'>
-    <img src="Implementation_Trajectory_description.png" alt="drawing" width="720"/>
+<p align="center">
+  <img src="Implementation_Trajectory_description.png" alt="Implementation & trajectory description" width="720"><br>
+  <img src="Round_Px_4.png" alt="Position (Px) results" width="720"><br>
+  <img src="Round_vEC_4_aRTI.png" alt="Velocity (vEC) results" width="720">
 </p>
-<br>
-<p align='center'>
-    <img src="Round_Px_4.png" alt="drawing" width="720"/>
-</p>
-<br>
-<p align='center'>
-    <img src="Round_vEC_4_aRTI.png" alt="drawing" width="720"/>
-</p
