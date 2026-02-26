@@ -20,7 +20,7 @@ MRIO adjusts accelerometer bias by estimating and differentiating forward veloci
 The configuration files are found in the `config` folder. It's split into two different yaml files: One containing general parameters (for example, `default.yaml`), and one containing a specific radar setup (for example, `radar_setup_6radars.yaml`). The name of the radar setup file to be used is specified in the general parameter configuration file under the field `radarSetupFile`. It's structured like this to make it easy to try out various radar setups without needing several configuration files for the general parameters.
 ## Real-time Radar Inertial Odometry
 <p align="center">
-  <img src="media/MRIO_demo.gif" width="1000"/>
+  <img src="MRIO_demo.gif" width="1000"/>
 </p>
  ## Sensor requirements
 One or more radars with ROS2 drivers publishing `sensor_msgs/PointCloud2` messages, including fields for x, y, z and doppler velocity. The name of the Doppler velocity field is specified as `dopplerVelocityFieldName` in the `radarSetupFile`. An IMU with a ROS2 driver publishing `sensor_msgs/Imu` messages. _Important_: Please note that MRIO relies on the `orientation` field of the message being included through an accurate AHRS, as this information is used in the update step of the second stage EKF.
