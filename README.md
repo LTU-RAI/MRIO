@@ -38,7 +38,9 @@ The configuration files are found in the `config` folder. It's split into two di
  ### filter_and_merge_pcl.py
 
  This node subscribes to the radar PointCloud2 topics defined in the `radarSetupFile`, transforms them to the `baseLinkFrame` (i.e., the body frame of the robot), merges them into a single pointcloud and publishes this at a fixed rate defined by the `radarPublishPeriod` parameter in the `radarSetupFile`. Before merging, the pointclouds can optionally be filtered by an inner and outer radius and/or by a vertical distance (the latter may be useful to discard false detections below ground level). Depending on the value of the boolean `useIndividualRadii`, the filtering radii may be equal for all the radars in the configuration, in which case they are defined in the general parameter file, or defined individually for each radar, in which case they are defined in the `radarSetupFile`.
+## RIO block diagram
 
+![RIO block diagram](rio_block_diagram.png)
  ### estimate_ego_velocity_from_doppler.py
 
 This node subscribes to the merged point cloud topic, where the point clouds from individual radars are first filtered based on a predefined sensing radius. The filtered data are then used to estimate ego velocity through a least-squares approach. Within this sensing range, both inner and outer radius thresholds are applied: the inner radius removes points caused by vehicle vibrations during motion, while the outer radius filters out points resulting from false reflections. In this work, we have used TIIWR6843AOP EVM radars, for which RANSAC didn't provide significant benefits.
@@ -46,9 +48,7 @@ This node subscribes to the merged point cloud topic, where the point clouds fro
 The node publishes the estimated ego velocity vector as a `TwistWithCovarianceStamped` message (on the topic defined by `egoVelocityWithCovTopic`). 
 
 <!--The covariance matrix is estimated using the formula described [here]---> <!(https://stats.stackexchange.com/questions/109846/the-variance-covariance-matrix-of-the-least-squares-parameter-estimation)--> <!(taken from [The Elements of Statistical Learning](https://hastie.su.domains/ElemStatLearn/))>.<! If RANSAC is activated, it also publishes the outlier filtered pointcloud.-->
-## RIO block diagram
 
-![RIO block diagram](rio_block_diagram.png)
  ### ekf.py
 
  This is just a simple implementation of a general EKF.
