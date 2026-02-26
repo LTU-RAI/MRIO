@@ -101,5 +101,5 @@ tmuxinator start -p mrio_launch.yml my_custom_config.yaml
 This work is licensed under the terms of the MIT license
 <br>
 <p align='center'>
-    <img src="" alt="drawing" width="720"/>
+    <img src="Implementation_Trajectory_description.png" alt="drawing" width="720"/>
 </p>
