@@ -106,5 +106,6 @@ tmuxinator start -p mrio_launch.yml my_custom_config.yaml
 
 ------------------------------------------------
 This work is licensed under the terms of the MIT license
-
+## MRIO Demo
+![](.gif)
 
