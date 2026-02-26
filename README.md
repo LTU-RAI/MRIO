@@ -1,7 +1,9 @@
 # MRIO
-## How IMU Drift Influences Multi-Radar Inertial Odometry for Ground Robots in Subterranean Terrains
-
 This is a real-time ROS2 implementation of the MRIO (Multi-Radar Inertial Odometry) originally developed by Moumita Mukherjee.
+## How IMU Drift Influences Multi-Radar Inertial Odometry for Ground Robots in Subterranean Terrains
+MRIO is an online radar–inertial odometry framework built using cost-effective FMCW TI IWR6843AOP ES2 radars arranged in an ensemble configuration with a Pixhawk IMU, mounted on a Pioneer 3-AT rover platform. Radars  R_1-R_4 are mounted on the same plane, while R_5-R_6 are installed at slanted angles to capture ceiling observations from both the front and rear directions. Operation in subterranean environments introduces significant challenges, including drift-induced degradation, sparse and noisy radar returns, flickering measurements, and additional IMU drift caused by extreme cold and sloped tunnel terrain. These factors make sensor fusion more unstable compared to LiDAR Inertial Odometry (LIO). However, LiDAR performance deteriorates in the presence of smoke, dust, and aerosols, whereas FMCW radars remain compact, lightweight, cost-effective, and robust under such conditions. To address these challenges, We proposes the MRIO framework that incorporates an IMU bias estimation module to enable resilient localization and mapping in GPS-denied subterranean environments affected by smoke and visibility degradation.
+
+
 #### [[ arXiv ](https:)] [[Video:(https://youtu.be/dJJiGeuZ9-Y)]
 
 <br>
