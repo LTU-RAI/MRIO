@@ -24,11 +24,15 @@ One or more radars with ROS2 drivers publishing `sensor_msgs/PointCloud2` messag
  All the nodes assume that there is a pre-existing TF tree containing static TFs between the frame defined in the parameter `baseLinkFrame` and the various sensor frames. For the Pioneer, there is a launch file in the `launch` folder called `static_tf_launch.py` which publishes the relevant TFs for that platform.
 
  ## Description of the nodes
+ 
  Note: Since the topic names can be chosen freely in the parameter file, when a topic is mentioned by name in the upcoming sections, it will refer to the name of the field in the parameter file, rather than the actual name of the ROS 2 topic.
  ### filter_and_merge_pcl.py
+ 
 This node subscribes to the radar PointCloud2 topics defined in the `radarSetupFile`, transforms them to the `baseLinkFrame` (i.e., the body frame of the robot), merges them into a single pointcloud and publishes this at a fixed rate defined by the `radarPublishPeriod` parameter in the `radarSetupFile`. Before merging, the pointclouds can optionally be filtered by an inner and outer radius and/or by a vertical distance (the latter may be useful to discard false detections below ground level). Depending on the value of the boolean `useIndividualRadii`, the filtering radii may be equal for all the radars in the configuration, in which case they are defined in the general parameter file, or defined individually for each radar, in which case they are defined in the `radarSetupFile`.
 ## RIO block diagram
+
 ![RIO block diagram](rio_block_diagram.png)
+
  ### estimate_ego_velocity_from_doppler.py
 This node subscribes to the merged point cloud topic, where the point clouds from individual radars are first filtered based on a predefined sensing radius. The filtered data are then used to estimate ego velocity through a least-squares approach. Within this sensing range, both inner and outer radius thresholds are applied: the inner radius removes points caused by vehicle vibrations during motion, while the outer radius filters out points resulting from false reflections. In this work, we have used TIIWR6843AOP EVM radars, for which RANSAC didn't provide significant benefits.The node publishes the estimated ego velocity vector as a `TwistWithCovarianceStamped` message (on the topic defined by `egoVelocityWithCovTopic`). 
 
