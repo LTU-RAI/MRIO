@@ -95,3 +95,7 @@ Or with a custom parameter file located in the mrio/config folder:
 cd mrio/launch
 tmuxinator start -p mrio_launch.yml my_custom_config.yaml
 ```
+## License
+
+------------------------------------------------
+This work is licensed under the terms of the MIT license
