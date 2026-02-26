@@ -103,3 +103,11 @@ This work is licensed under the terms of the MIT license
 <p align='center'>
     <img src="Implementation_Trajectory_description.png" alt="drawing" width="720"/>
 </p>
+<br>
+<p align='center'>
+    <img src="Round_Px_4.png" alt="drawing" width="720"/>
+</p>
+<br>
+<p align='center'>
+    <img src="Round_vEC_4_aRTI.png" alt="drawing" width="720"/>
+</p
