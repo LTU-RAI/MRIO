@@ -4,12 +4,14 @@ This is a real-time ROS2 implementation of the MRIO (Multi-Radar Inertial Odomet
 #### [[ arXiv ](https:)] [[Video:(https://youtu.be/dJJiGeuZ9-Y)]
 <p align="justify">
 MRIO is an online radar–inertial odometry framework built using cost-effective FMCW TI IWR6843AOP ES2 radars arranged in an ensemble configuration with a Pixhawk IMU, mounted on a Pioneer 3-AT rover platform. Radars  R_1-R_4 are mounted on the same plane, while R_5-R_6 are installed at slanted angles to capture ceiling observations from both the front and rear directions. Operation in subterranean environments introduces significant challenges, including drift-induced degradation, sparse and noisy radar returns, flickering measurements, and additional IMU drift caused by extreme cold and sloped tunnel terrain. These factors make sensor fusion more unstable compared to LiDAR Inertial Odometry (LIO). However, LiDAR performance deteriorates in the presence of smoke, dust, and aerosols, whereas FMCW radars remain compact, lightweight, cost-effective, and robust under such conditions. To address these challenges, we propose the MRIO framework that incorporates an IMU bias estimation module to enable resilient localization and mapping in GPS-denied subterranean environments affected by smoke and visibility degradation.
-</p>
-<br>
-<p align='center'>
-    <img src="Cover_Image.png" alt="drawing" width="720"/>
-</p>
+<div align="center" style="max-width: 900px; margin: auto;">
 
+  <!-- First (top) figure -->
+  <img src="Implementation_Trajectory_description.png"
+       alt="Implementation & Trajectory Description"
+       style="width: 100%; display: block; margin-bottom: 10px;" />
+
+</div>
 ## Dependencies
 ```
 sudo apt-get install python3-sklearn python3-sklearn-lib python-sklearn-doc
@@ -20,14 +22,7 @@ MRIO adjusts accelerometer bias by estimating and differentiating forward veloci
 
  ## Configuration
 The configuration files are found in the `config` folder. It's split into two different yaml files: One containing general parameters (for example, `default.yaml`), and one containing a specific radar setup (for example, `radar_setup_6radars.yaml`). The name of the radar setup file to be used is specified in the general parameter configuration file under the field `radarSetupFile`. It's structured like this to make it easy to try out various radar setups without needing several configuration files for the general parameters.
-<div align="center" style="max-width: 900px; margin: auto;">
 
-  <!-- First (top) figure -->
-  <img src="Implementation_Trajectory_description.png"
-       alt="Implementation & Trajectory Description"
-       style="width: 100%; display: block; margin-bottom: 10px;" />
-
-</div>
  ## Sensor requirements
 One or more radars with ROS2 drivers publishing `sensor_msgs/PointCloud2` messages, including fields for x, y, z and doppler velocity. The name of the Doppler velocity field is specified as `dopplerVelocityFieldName` in the `radarSetupFile`. An IMU with a ROS2 driver publishing `sensor_msgs/Imu` messages. _Important_: Please note that MRIO relies on the `orientation` field of the message being included through an accurate AHRS, as this information is used in the update step of the second stage EKF.
 
@@ -71,7 +66,10 @@ Returns the Jacobian \( H \) of \( h \) with respect to \( x \).
 
 ---
 ### EKF methods
-
+<br>
+<p align='center'>
+    <img src="Cover_Image.png" alt="drawing" width="100%"/>
+</p>
 #### `predict(self, u, Q, dt)`
 Performs the prediction step of the EKF.
 
