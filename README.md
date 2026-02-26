@@ -9,6 +9,7 @@ MRIO is an online radar–inertial odometry framework built using cost-effective
 <p align='center'>
     <img src="Cover_Image.png" alt="drawing" width="720"/>
 </p>
+
 ## Dependencies
 ```
 sudo apt-get install python3-sklearn python3-sklearn-lib python-sklearn-doc
