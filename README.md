@@ -46,16 +46,12 @@ The user must define a `model` class that implements the following four methods:
 
 #### `systemDynamics(self, x, u, dt)`
 Implements the (generally nonlinear) state transition function:
-
 $$
 \hat{\mathbf{x}}_k = f(\hat{\mathbf{x}}_{k-1}, \mathbf{u}_{k-1})
 $$
-
 #### `getStateTransitionMatrix(self, x, u, dt)`
 Returns the Jacobian \( F \) of \( f \) with respect to \( x \).
-
 ---
-
 ### Observation model
 
 #### `observationFunction(self, x)`
@@ -69,7 +65,6 @@ $$
 Returns the Jacobian \( H \) of \( h \) with respect to \( x \).
 
 ---
-
 ### EKF methods
 
 #### `predict(self, u, Q, dt)`
