@@ -3,7 +3,11 @@
 
 This is a real-time ROS2 implementation of the MRIO (Multi-Radar Inertial Odometry) originally developed by Moumita Mukherjee.
 #### [[ arXiv ](https:)] [[ Video ](https:)]
-Video:
+
+<br>
+<p align='center'>
+    <img src="./doc/img/" alt="drawing" width="720"/>
+</p>
 ## Dependencies
 
 ```
