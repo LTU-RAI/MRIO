@@ -6,7 +6,7 @@ This is a real-time ROS2 implementation of the MRIO (Multi-Radar Inertial Odomet
 
 <br>
 <p align='center'>
-    <img src="./doc/img/" alt="drawing" width="720"/>
+    <img src="Cover_Image.png" alt="drawing" width="720"/>
 </p>
 ## Dependencies
 
