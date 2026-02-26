@@ -4,14 +4,10 @@ This is a real-time ROS2 implementation of the MRIO (Multi-Radar Inertial Odomet
 #### [[ arXiv ](https:)] [[Video:(https://youtu.be/dJJiGeuZ9-Y)]
 <p align="justify">
 MRIO is an online radar–inertial odometry framework built using cost-effective FMCW TI IWR6843AOP ES2 radars arranged in an ensemble configuration with a Pixhawk IMU, mounted on a Pioneer 3-AT rover platform. Radars  R_1-R_4 are mounted on the same plane, while R_5-R_6 are installed at slanted angles to capture ceiling observations from both the front and rear directions. Operation in subterranean environments introduces significant challenges, including drift-induced degradation, sparse and noisy radar returns, flickering measurements, and additional IMU drift caused by extreme cold and sloped tunnel terrain. These factors make sensor fusion more unstable compared to LiDAR Inertial Odometry (LIO). However, LiDAR performance deteriorates in the presence of smoke, dust, and aerosols, whereas FMCW radars remain compact, lightweight, cost-effective, and robust under such conditions. To address these challenges, we propose the MRIO framework that incorporates an IMU bias estimation module to enable resilient localization and mapping in GPS-denied subterranean environments affected by smoke and visibility degradation.
-<div align="center" style="max-width: 900px; margin: auto;">
-
-  <!-- First (top) figure -->
-  <img src="Implementation_Trajectory_description.png"
-       alt="Implementation & Trajectory Description"
-       style="width: 100%; display: block; margin-bottom: 10px;" />
-
-</div>
+<br>
+<p align='center'>
+    <img src="Cover_Image.png" alt="drawing" width="100%"/>
+</p>
 ## Dependencies
 ```
 sudo apt-get install python3-sklearn python3-sklearn-lib python-sklearn-doc
@@ -66,10 +62,7 @@ Returns the Jacobian \( H \) of \( h \) with respect to \( x \).
 
 ---
 ### EKF methods
-<br>
-<p align='center'>
-    <img src="Cover_Image.png" alt="drawing" width="100%"/>
-</p>
+
 #### `predict(self, u, Q, dt)`
 Performs the prediction step of the EKF.
 
@@ -77,7 +70,14 @@ Performs the prediction step of the EKF.
 Performs the measurement update step.
 
 Which perform the predict and update steps with the help of the user-defined `model` class, and where `Q` and `R` are the process noise covariance and the measurement noise covariance, respectively. Even in the case that there's a single state, input or output, it's important for the functionality that `x`, `u` and `y` are provided as 1-dimensional numpy arrays, and that the jacobians and covariance matrices are provided as 2-dimensional numpy arrays (e.g., even if there is only a single state, `x` should be an array of shape (1,) and `getStateTransitionMatrix` should return an array of shape (1,1), they can _not_ just be floating point scalars). The x-component of the IMU acceleration and the z-component of the IMU angular velocity are considered as inputs driving the system dynamics, while the estimated ego velocity and the IMU yaw angle are considered as measurements. Since the IMU is publishing at a much higher rate than the radars, there are several `predict` steps in between each `update` step.
+<div align="center" style="max-width: 900px; margin: auto;">
 
+  <!-- First (top) figure -->
+  <img src="Implementation_Trajectory_description.png"
+       alt="Implementation & Trajectory Description"
+       style="width: 100%; display: block; margin-bottom: 10px;" />
+
+</div>
 ### ekf_stage1.py
 This node subscribes to the `egoVelocityWithCovTopic` and the `imuTopic` specified in the parameter file. It then fuses the x-component of the IMU acceleration with the x-component of the ego velocity vector through an EKF with x-velocity as the only state. The fused x-velocity is then differentiated and run through a moving average filter to produce a bias compensated x-acceleration, which is published as a `Float64` message under the topic specified by `stage1_outputTopic`. The size of the moving average filter is specified in the parameter file.
 __ekf_stage1.py__ and __ekf_stage2.py__ may use either the ego velocity covariance estimated from the least squares method, or a fixed constant value, depending on whether the parameter `useEgoVelCovarianceFromMessage` is set to `true` or `false`.
