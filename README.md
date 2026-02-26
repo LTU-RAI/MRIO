@@ -36,27 +36,47 @@ This node subscribes to the radar PointCloud2 topics defined in the `radarSetupF
  ### estimate_ego_velocity_from_doppler.py
 This node subscribes to the merged point cloud topic, where the point clouds from individual radars are first filtered based on a predefined sensing radius. The filtered data are then used to estimate ego velocity through a least-squares approach. Within this sensing range, both inner and outer radius thresholds are applied: the inner radius removes points caused by vehicle vibrations during motion, while the outer radius filters out points resulting from false reflections. In this work, we have used TIIWR6843AOP EVM radars, for which RANSAC didn't provide significant benefits.The node publishes the estimated ego velocity vector as a `TwistWithCovarianceStamped` message (on the topic defined by `egoVelocityWithCovTopic`). 
 
- ### ekf.py
+ ## ekf.py
 
- This is just a simple implementation of a general EKF.It's the responsibility of the user to define a `model` class which needs to implement the following four methods:
+A simple implementation of a general Extended Kalman Filter (EKF).
 
- #### systemDynamics(self, x, u, dt)
- Implements the (generally nonlinear) state transition function
- $$\hat{\mathbf{x}}_k = f\left(\hat{\mathbf{x}}_{k-1}, \mathbf{u}_{k-1}\right)$$
+The user must define a `model` class that implements the following four methods:
 
- #### getStateTransitionMatrix(self, x, u, dt)
- Returns the jacobian, $\mathbf{F}$, of $f$ with respect to $\mathbf{x}$.
+### State model
 
- #### observationFunction(self, x)
- Implements the (generally nonlinear) observation function
- $$\hat{\mathbf{y}}_k = h\left(\hat{\mathbf{x}}_{k}\right)$$
+#### `systemDynamics(self, x, u, dt)`
+Implements the (generally nonlinear) state transition function:
 
- #### getObservationMatrix(self, x)
-Returns the jacobian, $\mathbf{H}$, of $h$ with respect to $\mathbf{x}$. The EKF class has the following two methods,
+$$
+\hat{\mathbf{x}}_k = f(\hat{\mathbf{x}}_{k-1}, \mathbf{u}_{k-1})
+$$
 
-#### predict(self, u, Q, dt)
+#### `getStateTransitionMatrix(self, x, u, dt)`
+Returns the Jacobian \( F \) of \( f \) with respect to \( x \).
 
-#### update(self, y, R)
+---
+
+### Observation model
+
+#### `observationFunction(self, x)`
+Implements the (generally nonlinear) observation function:
+
+$$
+\hat{\mathbf{y}}_k = h(\hat{\mathbf{x}}_k)
+$$
+
+#### `getObservationMatrix(self, x)`
+Returns the Jacobian \( H \) of \( h \) with respect to \( x \).
+
+---
+
+### EKF methods
+
+#### `predict(self, u, Q, dt)`
+Performs the prediction step of the EKF.
+
+#### `update(self, y, R)`
+Performs the measurement update step.
 
 Which perform the predict and update steps with the help of the user-defined `model` class, and where `Q` and `R` are the process noise covariance and the measurement noise covariance, respectively. Even in the case that there's a single state, input or output, it's important for the functionality that `x`, `u` and `y` are provided as 1-dimensional numpy arrays, and that the jacobians and covariance matrices are provided as 2-dimensional numpy arrays (e.g., even if there is only a single state, `x` should be an array of shape (1,) and `getStateTransitionMatrix` should return an array of shape (1,1), they can _not_ just be floating point scalars). The x-component of the IMU acceleration and the z-component of the IMU angular velocity are considered as inputs driving the system dynamics, while the estimated ego velocity and the IMU yaw angle are considered as measurements. Since the IMU is publishing at a much higher rate than the radars, there are several `predict` steps in between each `update` step.
 
