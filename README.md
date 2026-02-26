@@ -52,15 +52,12 @@ $$
 #### `getStateTransitionMatrix(self, x, u, dt)`
 Returns the Jacobian \( F \) of \( f \) with respect to \( x \).
 ---
-### Observation model
-
 #### `observationFunction(self, x)`
 Implements the (generally nonlinear) observation function:
 
 $$
 \hat{\mathbf{y}}_k = h(\hat{\mathbf{x}}_k)
 $$
-
 #### `getObservationMatrix(self, x)`
 Returns the Jacobian \( H \) of \( h \) with respect to \( x \).
 
