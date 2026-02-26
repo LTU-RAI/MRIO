@@ -82,7 +82,15 @@ This node subscribes to the `egoVelocityWithCovTopic`, the `imuTopic` and the `s
 
 ### mapping.py
 This node subscribes to the radar pointcloud from the `mergedPCLTopic` (if `useRANSAC` is `false`) or the `ransacedPCLTopic` (if `useRANSAC` is `true`). The input pointcloud is transformed from the `baseLinkFrame` to the `odometryFrame` using the TF published by __ekf_stage2.py__, and appended to a pointcloud map, which is published once every 30 input messages under `mapTopic` (Note: The frequency of publishing the map should be left to the user to decide in the parameter file, but is currently hardcoded in __mapping.py__).
-
+ <!-- Bottom row -->
+  <div style="display: flex; justify-content: space-between;">
+    <img src="Round_Px_4.png"
+         alt="Position (Px) Results"
+         style="width: 49%;" />
+    <img src="Round_vEC_4_aRTI.png"
+         alt="Velocity (vEC) Results"
+         style="width: 49%;" />
+  </div>
 ## Launching MRIO
 The repository does not include a conventional ROS launch file to start all the nodes. Instead, we supply a [Tmuxinator](https://github.com/tmuxinator/tmuxinator) project file, which is intended to provide a better overview of the output from each node for troubleshooting, and makes it easy to terminate and restart individual nodes if needed.
 To launch using the default parameter file:
@@ -105,15 +113,5 @@ This work is licensed under the terms of the MIT license
   <img src="Implementation_Trajectory_description.png"
        alt="Implementation & Trajectory Description"
        style="width: 100%; display: block; margin-bottom: 10px;" />
-
-  <!-- Bottom row -->
-  <div style="display: flex; justify-content: space-between;">
-    <img src="Round_Px_4.png"
-         alt="Position (Px) Results"
-         style="width: 49%;" />
-    <img src="Round_vEC_4_aRTI.png"
-         alt="Velocity (vEC) Results"
-         style="width: 49%;" />
-  </div>
 
 </div>
