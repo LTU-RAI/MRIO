@@ -78,7 +78,9 @@ Which perform the predict and update steps with the help of the user-defined `mo
        style="width: 100%; display: block; margin-bottom: 10px;" />
 
 </div>
+
 ### ekf_stage1.py
+
 This node subscribes to the `egoVelocityWithCovTopic` and the `imuTopic` specified in the parameter file. It then fuses the x-component of the IMU acceleration with the x-component of the ego velocity vector through an EKF with x-velocity as the only state. The fused x-velocity is then differentiated and run through a moving average filter to produce a bias compensated x-acceleration, which is published as a `Float64` message under the topic specified by `stage1_outputTopic`. The size of the moving average filter is specified in the parameter file.
 __ekf_stage1.py__ and __ekf_stage2.py__ may use either the ego velocity covariance estimated from the least squares method, or a fixed constant value, depending on whether the parameter `useEgoVelCovarianceFromMessage` is set to `true` or `false`.
 
