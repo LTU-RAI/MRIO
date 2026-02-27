@@ -96,14 +96,17 @@ This node subscribes to the radar pointcloud from the `mergedPCLTopic` (if `useR
          alt="Velocity (vEC) Results"
          style="width: 49%;" />
   </div>
+
 ## Launching MRIO
 The repository does not include a conventional ROS launch file to start all the nodes. Instead, we supply a [Tmuxinator](https://github.com/tmuxinator/tmuxinator) project file, which is intended to provide a better overview of the output from each node for troubleshooting, and makes it easy to terminate and restart individual nodes if needed.
 To launch using the default parameter file:
+
 ```
 cd mrio/launch
 tmuxinator start -p mrio_launch.yml
 ```
 Or with a custom parameter file located in the mrio/config folder:
+
 ```
 cd mrio/launch
 tmuxinator start -p mrio_launch.yml my_custom_config.yaml
