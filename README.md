@@ -45,6 +45,7 @@ This node subscribes to the merged point cloud topic, where the point clouds fro
 ### State model
 #### `systemDynamics(self, x, u, dt)`
 Implements the (generally nonlinear) state transition function:
+
 $$
 \hat{\mathbf{x}}_k = f(\hat{\mathbf{x}}_{k-1}, \mathbf{u}_{k-1})
 $$
