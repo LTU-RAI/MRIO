@@ -1,5 +1,4 @@
 # MRIO
-This is a real-time ROS2 implementation of the MRIO (Multi-Radar Inertial Odometry) originally developed by Moumita Mukherjee.
 ## How IMU Drift Influences Multi-Radar Inertial Odometry for Ground Robots in Subterranean Terrains
 #### [[ arXiv ](https:)] [[Video:(https://youtu.be/dJJiGeuZ9-Y)]
 <p align="justify">
