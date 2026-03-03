@@ -1,6 +1,28 @@
 # MRIO
 ## How IMU Drift Influences Multi-Radar Inertial Odometry for Ground Robots in Subterranean Terrains
-#### [[ arXiv ](https://arxiv.org/abs/2602.24192)] [[Video:(https://youtu.be/dJJiGeuZ9-Y)]
+#### Article could be accessed at [[ arXiv ](https://arxiv.org/abs/2602.24192)]
+
+#### Watch the videos of MRIO operation with:
+
+<table align="center">
+  <tr>
+    <td align="center">
+      <a href="https://youtu.be/dJJiGeuZ9-Y">
+        <img src="https://img.youtube.com/vi/dJJiGeuZ9-Y/hqdefault.jpg" alt="6 mmWave Radars" width="350">
+      </a>
+      <br><br>
+      <b>6 mmWave Radars</b>
+    </td>
+    <td align="center">
+      <a href="https://youtu.be/_D7tuC2YWWQ">
+        <img src="https://img.youtube.com/vi/_D7tuC2YWWQ/hqdefault.jpg" alt="77/79 GHz 4D Long Range Radar" width="350">
+      </a>
+      <br><br>
+      <b>77/79 GHz 4D Long Range Radar</b>
+    </td>
+  </tr>
+</table>
+
 <p align="justify">
 MRIO is an online Radar–inertial odometry framework developed using cost-effective FMCW TI IWR6843AOP ES2 radars arranged in an ensemble configuration and integrated with either a Pixhawk or VectorNav IMU, mounted on a Pioneer 3-AT rover platform. Radars  R_1-R_4 are mounted on the same plane, while R_5-R_6 are installed at slanted angles to capture ceiling observations from both the front and rear directions. Operation in subterranean environments introduces significant challenges, including drift-induced degradation, sparse and noisy radar returns, flickering measurements, and additional IMU drift caused by extreme cold and sloped tunnel terrain. These factors make sensor fusion more unstable compared to LiDAR Inertial Odometry (LIO). However, LiDAR performance deteriorates in the presence of smoke, dust, and aerosols, whereas FMCW radars remain compact, lightweight, cost-effective, and robust under such conditions. To address these challenges, the MRIO framework is proposed that incorporates an IMU bias estimation module to enable resilient localization and mapping in GPS-denied subterranean environments affected by smoke and visibility degradation.
 <br>
