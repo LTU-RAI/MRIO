@@ -134,6 +134,10 @@ Or with a custom parameter file located in the mrio/config folder:
 cd mrio/launch
 tmuxinator start -p mrio_launch.yml my_custom_config.yaml
 ```
+An extended discussion of the proposed framework, its validation in smoke and no-smoke scenarios, and implementation  in the SubT environment under different weather conditions and adverse scenarios is discussed in the article in detail. 
+## Resilient Multi-Radar Inertial Odometry with Adaptive Bias Correction for Localization in Smoke-Filled Subterranean Environments
+#### Article could be accessed at
+Below is a video demonstration of the implementation described in the article:
 
 ## License
 
