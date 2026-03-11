@@ -138,6 +138,7 @@ An extended discussion of the proposed framework, its validation in smoke and no
 ## Resilient Multi-Radar Inertial Odometry with Adaptive Bias Correction for Localization in Smoke-Filled Subterranean Environments
 #### Article could be accessed at
 Below is a video demonstration of the implementation described in the article:
+[Watch the Demo Video](https://youtu.be/3Zw4plK4cwM?si=uGXloKn7R66Jb3f4)
 
 ## License
 
